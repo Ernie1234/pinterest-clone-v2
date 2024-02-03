@@ -10,9 +10,10 @@ interface MyToken {
 }
 
 export default function Login() {
+  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  console.log(clientId);
   return (
     <div>
-      Login
       <GoogleLogin
         onSuccess={(credentialResponse) => {
           const credentialResponseDecode = jwtDecode<MyToken>(

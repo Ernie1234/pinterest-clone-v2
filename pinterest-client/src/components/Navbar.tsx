@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Login } from ".";
 
 export default function Navbar() {
   return (
@@ -50,7 +51,7 @@ export default function Navbar() {
               </li>
             </Link>
           </ul>
-          <button>Log in</button>
+          <Login />
         </div>
       </div>
     </nav>
