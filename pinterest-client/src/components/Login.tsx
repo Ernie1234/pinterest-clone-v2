@@ -1,5 +1,5 @@
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
+import { JwtPayload, jwtDecode } from "jwt-decode";
 
 interface MyToken {
   name: string;
@@ -10,14 +10,12 @@ interface MyToken {
 }
 
 export default function Login() {
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-  console.log(clientId);
   return (
     <div>
       <GoogleLogin
         onSuccess={(credentialResponse) => {
-          const credentialResponseDecode = jwtDecode<MyToken>(
-            credentialResponse.credential
+          const credentialResponseDecode = jwtDecode<JwtPayload & MyToken>(
+            credentialResponse.credential as string
           );
           console.log(credentialResponseDecode);
         }}
