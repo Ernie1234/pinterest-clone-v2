@@ -1,13 +1,20 @@
-function App() {
+import { Route, Routes, useLocation } from "react-router-dom";
+import { ExplorePage, Home, VideosPage } from "./routes";
+import { Navbar, SearchNavBar } from "./components";
+
+const App = () => {
+  const { pathname } = useLocation();
+
   return (
-    <>
-      <div className="min-h-screen flex justify-center items-center">
-        <h1 className="text-3xl font-bold text-red-500">
-          Install & Setup Vite + React + Typescript + Tailwind CSS 3
-        </h1>
-      </div>
-    </>
+    <div>
+      {pathname === "/" ? <Navbar /> : <SearchNavBar />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/videos" element={<VideosPage />} />
+        <Route path="/explore" element={<ExplorePage />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;
