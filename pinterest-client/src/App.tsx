@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { ExplorePage, Home, VideosPage } from "./routes";
+import { ExplorePage, Feeds, Home, VideosPage } from "./routes";
 import { Navbar, SearchNavBar } from "./components";
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
       {pathname === "/" ? <Navbar /> : <SearchNavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/feeds" element={<Feeds />} />
         <Route path="/videos" element={<VideosPage />} />
         <Route path="/explore" element={<ExplorePage />} />
       </Routes>
