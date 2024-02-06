@@ -1,7 +1,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { client } from "../utils/client";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 interface MyToken {
   _id: string | (string[] & string);
@@ -12,18 +12,11 @@ interface MyToken {
   aud: string;
   email_verified: boolean;
 }
-// type Tdoc = {
-//   _id: string | (string[] & string);
-//   type: string;
-//   username: string;
-//   image: string;
-// };
 export default function Login() {
-  const navigate = useNavigate();
   return (
     <div>
       <GoogleLogin
-        onSuccess={(credentialResponse) => {
+        onSuccess={async (credentialResponse) => {
           const credentialResponseDecode = jwtDecode<JwtPayload & MyToken>(
             credentialResponse.credential as string
           );
@@ -34,13 +27,19 @@ export default function Login() {
           const { name, aud, picture } = credentialResponseDecode;
           const doc = {
             _id: aud,
-            type: "User",
+            _type: "user",
             username: name,
-            image: picture,
+            avatar: picture,
           };
-          client.createIfNotExists(doc).then(() => {
-            navigate("/feeds", { replace: true });
-          });
+          try {
+            const createdDoc = await client.createIfNotExists(doc);
+            console.log(createdDoc);
+          } catch (error) {
+            console.log(error);
+          }
+          // client.createIfNotExists(doc).then(() => {
+          //   navigate("/feeds", { replace: true });
+          // });
         }}
         onError={() => {
           console.log("Login Failed");

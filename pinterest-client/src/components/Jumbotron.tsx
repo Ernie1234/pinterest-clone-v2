@@ -11,6 +11,7 @@ export default function Jumbotron() {
   setInterval(() => {
     // const slider = document.getElementById("slider");
   }, 1000);
+
   return (
     <div className="snap-start bg-orange-200 grid w-screen h-screen place-items-center text-xl">
       <div
