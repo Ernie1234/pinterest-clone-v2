@@ -1,14 +1,22 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
+import { googleLogout } from "@react-oauth/google";
 
 import { UserContext } from "../hooks/contextUser";
 import { AiFillMessage } from "react-icons/ai";
 
 export default function SearchNavBar() {
   const user = useContext(UserContext);
-  // console.log(user);
+  const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleCloseMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <nav className="bg-white fixed w-full z-50 top-0 start-0 border-b border-gray-200 shadow-md">
       <div className=" flex flex-wrap gap-6 lg:gap-8 items-center justify-evenly mx-auto px-3 md:px-6 lg:px-9 py-4">
@@ -54,17 +62,20 @@ export default function SearchNavBar() {
         </div>
 
         {/* user navigation section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* user icons */}
-
-          <IoNotifications size={30} className="text-gray-500" />
-          <AiFillMessage size={30} className="text-gray-500" />
+          <div className="inline-flex items-center justify-center p-2 rounded-full bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out">
+            <IoNotifications size={25} className="text-gray-500" />
+          </div>
+          <div className="inline-flex items-center justify-center p-2 rounded-full bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out">
+            <AiFillMessage size={25} className="text-gray-500" />
+          </div>
           {/* user avatar */}
           <div className="flex gap-6 lg:gap-8" id="right">
             {user ? (
               <Link to="/profile">
                 <img
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
                   src={user.picture}
                   alt="user-avatar"
                 />
@@ -86,6 +97,139 @@ export default function SearchNavBar() {
                   </svg>
                 </div>
               </Link>
+            )}
+          </div>
+
+          {/* user dropdown wrapper */}
+          <div className="relative">
+            {/* user dropdown  btn */}
+            <div
+              onClick={handleCloseMenu}
+              className="inline-flex items-center justify-center p-2 rounded-full bg-white hover:bg-gray-200 transition-all duration-300 ease-in-out"
+            >
+              <FaChevronDown size={20} className="text-gray-500" />
+            </div>
+
+            {/* user dropdown  menu */}
+            {isOpen && (
+              <div className="z-10 absolute top-16 right-0 block divide-y rounded-lg shadow-sm md:shadow-md lg:shadow-lg w-72 bg-white divide-gray-600">
+                <ul
+                  className="p-2 text-sm text-gray-800"
+                  aria-labelledby="dropdownMenuIconHorizontalButton"
+                >
+                  {user && (
+                    <>
+                      <p>Currently in</p>
+                      <li>
+                        <div
+                          onClick={() => {
+                            handleCloseMenu;
+                            navigate("/profile", { replace: true });
+                          }}
+                          className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                        >
+                          <div className="flex gap-3 items-center">
+                            <img
+                              className="w-16 h-16 rounded-full"
+                              src={user.picture}
+                              alt="user-avatar"
+                            />
+
+                            <div>
+                              <p>{user.name.slice(0, 18)}</p>
+                              <p className="font-normal text-gray-500 text-sm">
+                                Personal
+                              </p>
+                              <p className="font-normal text-gray-500 text-sm">
+                                {user.email.slice(0, 16) + "..."}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </>
+                  )}
+                  <p>Your accounts</p>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/account", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      Add account
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      Convert to business
+                    </div>
+                  </li>
+                  <p>More Options</p>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/setting", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      Settings
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/help", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      Get help
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      See terms of service
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      onClick={() => {
+                        handleCloseMenu;
+                        navigate("/", { replace: true });
+                      }}
+                      className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                    >
+                      Your privacy rights
+                    </div>
+                  </li>
+                </ul>
+                <div className="px-2">
+                  <div
+                    onClick={() => {
+                      googleLogout();
+                      navigate("/", { replace: true });
+                    }}
+                    className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-red-200 "
+                  >
+                    Logout
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
