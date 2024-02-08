@@ -1,23 +1,15 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { JwtPayload, jwtDecode } from "jwt-decode";
 import { client } from "../utils/client";
+import { TUser } from "../types/types";
 // import { useNavigate } from "react-router-dom";
 
-interface MyToken {
-  _id: string | (string[] & string);
-  type: string;
-  name: string;
-  picture: string;
-  email: string;
-  aud: string;
-  email_verified: boolean;
-}
 export default function Login() {
   return (
     <div>
       <GoogleLogin
         onSuccess={async (credentialResponse) => {
-          const credentialResponseDecode = jwtDecode<JwtPayload & MyToken>(
+          const credentialResponseDecode = jwtDecode<JwtPayload & TUser>(
             credentialResponse.credential as string
           );
           localStorage.setItem(
