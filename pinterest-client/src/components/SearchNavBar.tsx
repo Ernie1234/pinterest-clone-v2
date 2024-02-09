@@ -18,7 +18,7 @@ export default function SearchNavBar() {
   };
 
   return (
-    <nav className="bg-white fixed w-full z-50 top-0 start-0 border-b border-gray-200 shadow-md">
+    <nav className="bg-white sticky w-full z-50 top-0 start-0 border-b border-gray-200 shadow-md">
       <div className=" flex flex-wrap gap-6 lg:gap-8 items-center justify-evenly mx-auto px-3 md:px-6 lg:px-9 py-4">
         <div className="flex gap-4 lg:gap-6">
           <Link
@@ -112,7 +112,7 @@ export default function SearchNavBar() {
 
             {/* user dropdown  menu */}
             {isOpen && (
-              <div className="z-10 absolute top-16 right-0 block divide-y rounded-lg shadow-sm md:shadow-md lg:shadow-lg w-72 bg-white divide-gray-600">
+              <div className="z-10 absolute top-16 right-0 block divide-y rounded-lg shadow-sm md:shadow-md lg:shadow-lg w-72 bg-white divide-gray-300">
                 <ul
                   className="p-2 text-sm text-gray-800"
                   aria-labelledby="dropdownMenuIconHorizontalButton"
