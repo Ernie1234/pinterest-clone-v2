@@ -222,6 +222,7 @@ export default function SearchNavBar() {
                   <div
                     onClick={() => {
                       googleLogout();
+                      localStorage.clear();
                       navigate("/", { replace: true });
                     }}
                     className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-red-200 "

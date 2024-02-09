@@ -3,11 +3,12 @@ import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const config: ClientConfig = {
-  projectId: import.meta.env.VITE_SANTIY_PROJECT_ID, // find this at manage.sanity.io or in your sanity.json
+  projectId: "xq0lna9w", // find this at manage.sanity.io or in your sanity.json
   dataset: "production", // this is from those question during 'sanity init'
   useCdn: true, // set to `false` to bypass the edge cache
   apiVersion: "2022-03-07", // use current date (YYYY-MM-DD) to target the latest API version
-  token: import.meta.env.VITE_SANTIY_TOKEN, // Find this in the “API” tab of your project’s settings
+  token:
+    "skR1D6b1LgCnMobBryys4OEt1yKK65uRiMNYjDnrq0GPv2Uj75jRJGj3t8wYSPRrb9NspVQjhjqJamGntbwNB1wpbgptQO6cige26nGLZEUExEup6L43xXVY4AdzI1WVbh1exM8vx16spgHwgStW5UdDHf22F3uYAt8vqcyhH94XoFQUfEK5", // Find this in the “API” tab of your project’s settings
 };
 export const client = createClient(config);
 
