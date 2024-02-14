@@ -7,16 +7,31 @@ import { TPin, TUser } from "../types/types";
 import { fetchUser } from "../utils/fetchUser";
 import { client, urlFor } from "../utils/client";
 import { LuShare } from "react-icons/lu";
+import { useOutsideClick } from "../hooks/outsideClick";
+import { ShareMenu } from ".";
+import { useOutSideClickShareMenu } from "../hooks/outSideClickShareMenu";
 
 type Props = {
   pin: TPin;
 };
+
 export default function Pin({ pin: { image, _id, destination, save } }: Props) {
   const [postHovered, setPostHovered] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [visiblePin, setVisiblePin] = useState(false);
+
+  const { visible, setVisible, ref } = useOutsideClick(false);
+  const { visibleShareMenu, setVisibleShareMenu, ref2 } =
+    useOutSideClickShareMenu(false);
   const navigate = useNavigate();
   const user: TUser = fetchUser();
   //   console.log(user._id, user.aud, save);
+
+  //!this is for testing the share link if it's working...NOTE:link doesn't work of local host
+  const shareUrl = window.location.href;
+
+  //   console.log(shareUrl);
+  //   const shareUrl =
+  //     "https://www.linkedin.com/pulse/reusable-share-button-using-solid-principles-react-rafael-perozin/";
 
   const alreadySaved = !!save?.filter((item) => item.postedBy?._id === user.aud)
     ?.length;
@@ -24,7 +39,7 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
 
   const handleMenuState = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    setIsOpen((prev) => !prev);
+    setVisible((prev) => !prev);
   };
 
   const savePin = (id: string) => {
@@ -49,23 +64,34 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
     }
   };
 
-  //  useEffect(() => {
-  //    function handleClickOutside(event) {
-  //      if (ref.current && !ref.current.contains(event.target)) {
-  //        alert("You clicked outside of me!");
-  //      }
-  //    }
-  //    document.addEventListener("mousedown", handleClickOutside);
-  //    return () => {
-  //      document.removeEventListener("mousedown", handleClickOutside);
-  //    };
-  // }, [ref]);
+  //   function to handle delete a pin from the database if it's the user
 
-  // const wrapperRef = useRef(null);
-  // useOutsideAlerter(wrapperRef);
+  //   function to handle hide and undo hide pins
+  const handleHidePin = () => {
+    setVisible(false);
+    setVisiblePin((prev) => !prev);
+  };
+
+  //   function to handle report pins
+  const handleReport = () => {};
 
   return (
     <div className="m-2 w-max relative">
+      {visiblePin && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/85 backdrop-blur-sm rounded-md md:rounded-lg lg:rounded-xl overflow-hidden transition-all duration-500 ease-in-out z-[20] flex justify-start items-start">
+          <div className="p-3">
+            <p className="text-gray-200">
+              Got it! We won't show you this Pin in the future.
+            </p>
+            <button
+              onClick={handleHidePin}
+              className="text-white font-semibold pt-3"
+            >
+              Undo
+            </button>
+          </div>
+        </div>
+      )}
       <div
         className=" relative cursor-pointer w-auto hover:shadow-lg rounded-md md:rounded-lg lg:rounded-xl overflow-hidden transition-all duration-500 ease-in-out"
         onMouseEnter={() => setPostHovered(true)}
@@ -83,21 +109,11 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
             style={{ height: "100%" }}
           >
             <div className="flex items-center justify-end">
-              {/* <div className="flex gap-2">
-                <a
-                  href={`${image?.asset?.url}?dl=`}
-                  download
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
-                >
-                  <MdDownloadForOffline />
-                </a>
-              </div> */}
-
               {/* saving btn */}
               {alreadySaved ? (
                 <button
                   type="button"
+                  disabled
                   className=" bg-gray-900 text-white font-bold p-4 text-base rounded-full hover:shadow-md outline-none capitalize"
                 >
                   saved
@@ -109,7 +125,7 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
                     e.stopPropagation();
                     savePin(_id);
                   }}
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none capitalize"
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-3 text-base rounded-3xl hover:shadow-md outline-none capitalize"
                 >
                   save
                 </button>
@@ -137,6 +153,7 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
                   className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-80 hover:opacity-100 hover:shadow-md outline-none"
                   onClick={(e) => {
                     e.stopPropagation();
+                    setVisibleShareMenu((prev) => !prev);
                   }}
                 >
                   <LuShare />
@@ -152,11 +169,33 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
           </div>
         )}
       </div>
-      {isOpen && (
+      {visibleShareMenu && <ShareMenu shareUrl={shareUrl} ref2={ref2} />}
+      {visible && (
         <div
-          className="absolute bg-purple-600 w-20 h-12 -bottom-12 right-0 rounded-md md:rounded-lg lg:rounded-xl"
-          //   ref={wrapperRef}
-        ></div>
+          className="absolute p-2 -bottom-28 -right-8 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50"
+          ref={ref}
+        >
+          <div
+            onClick={handleHidePin}
+            className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
+          >
+            Hide Pin
+          </div>
+          <a
+            href={`${image?.asset?.url}?dl=`}
+            download
+            onClick={(e) => e.stopPropagation()}
+            className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+          >
+            Download image
+          </a>
+          <div
+            onClick={handleReport}
+            className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
+          >
+            Report Pin
+          </div>
+        </div>
       )}
     </div>
   );

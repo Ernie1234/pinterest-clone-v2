@@ -112,7 +112,7 @@ export default function SearchNavBar() {
 
             {/* user dropdown  menu */}
             {isOpen && (
-              <div className="z-10 absolute top-16 right-0 block divide-y rounded-lg shadow-sm md:shadow-md lg:shadow-lg w-72 bg-white divide-gray-300">
+              <div className="z-10 absolute top-16 right-0 block rounded-lg shadow-sm md:shadow-md lg:shadow-lg w-72 bg-white divide-y divide-gray-300">
                 <ul
                   className="p-2 text-sm text-gray-800"
                   aria-labelledby="dropdownMenuIconHorizontalButton"

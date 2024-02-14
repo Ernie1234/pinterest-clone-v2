@@ -2,6 +2,7 @@ export { default as Login } from "./Login";
 export { default as Button } from "./Button";
 export { default as Navbar } from "./Navbar";
 export { default as Carousel } from "./Carousel";
+export { default as ShareMenu } from "./ShareMenu";
 export { default as Jumbotron } from "./Jumbotron";
 export { default as SearchNavBar } from "./SearchNavBar";
 export { default as SignUpSection } from "./SignUpSection";
