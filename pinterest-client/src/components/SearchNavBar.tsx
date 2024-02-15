@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { googleLogout } from "@react-oauth/google";
@@ -10,6 +10,7 @@ import { AiFillMessage } from "react-icons/ai";
 export default function SearchNavBar() {
   const user = useContext(UserContext);
   const navigate = useNavigate();
+  // console.log(user);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,18 +34,21 @@ export default function SearchNavBar() {
           </Link>
 
           <ul className="flex gap-1 justify-center items-center font-medium ">
-            <Link to="/feeds">
-              <li className="block py-3 px-5 font-semibold text-white bg-black hover:bg-gray-800 rounded-full capitalize cursor-pointer">
-                Home
-              </li>
-            </Link>
-            <Link to="/create">
-              <li className="block py-3 px-4 font-semibold text-gray-950 hover:bg-gray-200 rounded-full capitalize cursor-pointer">
-                create
-              </li>
-            </Link>
+            <NavLink
+              to="/feeds"
+              className="block py-3 px-5 font-semibold text-gray-950 hover:bg-gray-200 aria-[current=page]:text-white aria-[current=page]:bg-black rounded-full capitalize cursor-pointer"
+            >
+              <li>Home</li>
+            </NavLink>
+            <NavLink
+              to="/create"
+              className="block py-3 px-5 font-semibold text-gray-950 hover:bg-gray-200 aria-[current=page]:text-white aria-[current=page]:bg-black rounded-full capitalize cursor-pointer"
+            >
+              <li>create</li>
+            </NavLink>
           </ul>
         </div>
+
         {/* search  bar */}
         <div className="flex-1">
           <div className="relative">
@@ -76,7 +80,7 @@ export default function SearchNavBar() {
               <Link to="/profile">
                 <img
                   className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
-                  src={user.picture}
+                  src={user?.picture}
                   alt="user-avatar"
                 />
               </Link>

@@ -19,6 +19,7 @@ export default function Create() {
 
   const [isFocused, setIsFocused] = useState(false);
   const [isAboutFocused, setIsAboutFocused] = useState(false);
+  const [isDestFocused, setIsDestFocused] = useState(false);
 
   const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -117,8 +118,30 @@ export default function Create() {
                 upload
               </button>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 flex flex-col justify-between pb-3 md:pb-8 lg:pb-12">
               <div>
+                {/* selection div  */}
+                <div className="flex justify-end items-end w-full mb-4">
+                  <div className="w-3/5 flex">
+                    {/* <label className="sr-only">Choose a state</label> */}
+                    <select
+                      id="category"
+                      className="appearance-none text-sm rounded-s-md md:rounded-s-lg lg:rounded-s-xl border-2 border-e-0 border-red-200 outline-none block w-full p-2.5 bg-gray-200 placeholder-gray-200 text-gray-800 hover:border-red-300 focus:border-red-400
+                      "
+                    >
+                      <option selected>Choose a Category</option>
+                      <option value="CA">California</option>
+                      <option value="TX">Texas</option>
+                    </select>
+                    <label
+                      htmlFor="category"
+                      className="p-2.5 text-sm text-gray-100 font-bold bg-red-500 rounded-e-md md:rounded-e-lg lg:rounded-e-xl"
+                    >
+                      Category
+                    </label>
+                  </div>
+                </div>
+
                 {/* title input div */}
                 <div>
                   <input
@@ -135,17 +158,21 @@ export default function Create() {
                     }}
                     className="w-full min-h-fit border-b-2 border-gray-500 focus:border-blue-500 outline-none font-bold text-xl md:text-2xl lg:text-4xl text-gray-900 placeholder:text-4xl placeholder:text-gray-500 py-2"
                   />
-                  {isFocused && (
-                    <label className="flex justify-between items-center  transition-all duration-300">
-                      <span className="text-gray-500 text-xs text-center">
-                        Your first 40 characters are what show up in feeds
-                      </span>
-                      <span className="text-gray-500 text-xs text-center">
-                        {100 - title?.length}
-                      </span>
-                    </label>
-                  )}
+
+                  <label
+                    className={`${
+                      isFocused ? "opacity-1" : "opacity-0"
+                    } flex justify-between items-center  transition-all duration-500 ease-in-out`}
+                  >
+                    <span className="text-gray-500 text-xs text-center">
+                      Your first 40 characters are what show up in feeds
+                    </span>
+                    <span className="text-gray-500 text-xs text-center">
+                      {100 - title?.length}
+                    </span>
+                  </label>
                 </div>
+
                 {/* uploader details area */}
                 <div className="my-5">
                   {/* uploader image and name in flex */}
@@ -165,6 +192,7 @@ export default function Create() {
                     </div>
                   )}
                 </div>
+
                 {/* about input div */}
                 <div>
                   <input
@@ -181,18 +209,53 @@ export default function Create() {
                     }}
                     className="w-full min-h-fit border-b-2 border-gray-500 focus:border-blue-500 outline-none font-semibold text-xl text-gray-900  placeholder:text-gray-500 py-2"
                   />
-                  {isAboutFocused && (
-                    <label className="flex justify-between items-center  transition-all duration-300">
-                      <span className="text-gray-500 text-xs text-center">
-                        People will usually see the first 50 characters when
-                        they click on your Pin
-                      </span>
-                      <span className="text-gray-500 text-xs text-center">
-                        {500 - title?.length}
-                      </span>
-                    </label>
-                  )}
+
+                  <label
+                    className={`${
+                      isAboutFocused ? "opacity-1" : "opacity-0"
+                    } flex justify-between items-center  transition-all duration-500 ease-in-out`}
+                  >
+                    <span className="text-gray-500 text-xs text-center">
+                      People will usually see the first 50 characters when they
+                      click on your Pin
+                    </span>
+                    <span className="text-gray-500 text-xs text-center">
+                      {500 - title?.length}
+                    </span>
+                  </label>
                 </div>
+              </div>
+              {/* for destination */}
+              <div>
+                <p className="text-gray-500 capitalize -mb-1">destination</p>
+                <input
+                  type="text"
+                  placeholder="Url to what your Pin is about"
+                  onFocus={() => setIsAboutFocused(true)}
+                  onBlur={() => setIsAboutFocused(false)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    // if (!isNaN(Number(value))) return;
+                    if (value.length <= 500) {
+                      setAbout(value);
+                    }
+                  }}
+                  className="w-full min-h-fit border-b-2 border-gray-500 focus:border-blue-500 outline-none font-semibold text-xl text-gray-900  placeholder:text-gray-500 py-2"
+                />
+
+                <label
+                  className={`${
+                    isDestFocused ? "opacity-1" : "opacity-0"
+                  } flex justify-between items-center  transition-all duration-500 ease-in-out`}
+                >
+                  <span className="text-gray-500 text-xs text-center">
+                    People will like to visit your site or know more about your
+                    Pin
+                  </span>
+                  <span className="text-gray-500 text-xs text-center">
+                    {destination?.length}
+                  </span>
+                </label>
               </div>
             </div>
           </div>
