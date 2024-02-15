@@ -12,7 +12,7 @@ export default function Create() {
   const [about, setAbout] = useState("");
   const [destination, setDestination] = useState("");
   const [image, setImage] = useState<SanityAssetDocument | null>(null);
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState<string | null>(null);
   const [imgLoading, setImgLoading] = useState(false);
   const [fields, setFields] = useState(false);
   const [imgTypeError, setimgTypeError] = useState(false);
@@ -49,7 +49,14 @@ export default function Create() {
     }
   };
 
-  console.log(image?.url);
+  // to be deleted after it is set in the backend
+  const catOptions = [
+    { id: 1, name: "Netflix" },
+    { id: 2, name: "Amazon Prime" },
+    { id: 3, name: "Hulu" },
+    { id: 4, name: "HBO" },
+    { id: 5, name: "Disney+" },
+  ];
 
   return (
     <div className="flex bg-gray-200">
@@ -128,10 +135,18 @@ export default function Create() {
                       id="category"
                       className="appearance-none text-sm rounded-s-md md:rounded-s-lg lg:rounded-s-xl border-2 border-e-0 border-red-200 outline-none block w-full p-2.5 bg-gray-200 placeholder-gray-200 text-gray-800 hover:border-red-300 focus:border-red-400
                       "
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                      }}
                     >
-                      <option selected>Choose a Category</option>
-                      <option value="CA">California</option>
-                      <option value="TX">Texas</option>
+                      <option selected value="others">
+                        Choose a Category
+                      </option>
+                      {catOptions.map((category) => (
+                        <option value={category.name} key={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
                     </select>
                     <label
                       htmlFor="category"
@@ -202,7 +217,6 @@ export default function Create() {
                     onBlur={() => setIsAboutFocused(false)}
                     onChange={(e) => {
                       const value = e.target.value;
-                      // if (!isNaN(Number(value))) return;
                       if (value.length <= 500) {
                         setAbout(value);
                       }
@@ -227,18 +241,17 @@ export default function Create() {
               </div>
               {/* for destination */}
               <div>
-                <p className="text-gray-500 capitalize -mb-1">destination</p>
+                <p className="text-gray-500 capitalize -mb-1">
+                  Add a destination link
+                </p>
                 <input
                   type="text"
                   placeholder="Url to what your Pin is about"
-                  onFocus={() => setIsAboutFocused(true)}
-                  onBlur={() => setIsAboutFocused(false)}
+                  onFocus={() => setIsDestFocused(true)}
+                  onBlur={() => setIsDestFocused(false)}
                   onChange={(e) => {
                     const value = e.target.value;
-                    // if (!isNaN(Number(value))) return;
-                    if (value.length <= 500) {
-                      setAbout(value);
-                    }
+                    setDestination(value);
                   }}
                   className="w-full min-h-fit border-b-2 border-gray-500 focus:border-blue-500 outline-none font-semibold text-xl text-gray-900  placeholder:text-gray-500 py-2"
                 />
