@@ -9,13 +9,15 @@ type Props = {
 
 export default function MasonryLayout({ pins }: Props) {
   const breakpointColumnsObj = {
-    default: 6,
-    1100: 3,
-    700: 2,
+    default: 4,
+    3000: 6,
+    2000: 5,
+    1200: 3,
+    1000: 2,
     500: 1,
   };
   return (
-    <Masonry breakpointCols={breakpointColumnsObj} className="flex lg:gap-4">
+    <Masonry breakpointCols={breakpointColumnsObj} className="flex">
       {pins.map((pin: TPin) => (
         <Pin key={pin._id} pin={pin} />
       ))}

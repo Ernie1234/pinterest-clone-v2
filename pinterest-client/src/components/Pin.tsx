@@ -76,7 +76,7 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
   const handleReport = () => {};
 
   return (
-    <div className="m-2 w-max relative">
+    <div className="m-2 lg:my-8 w-max relative">
       {visiblePin && (
         <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/85 backdrop-blur-sm rounded-md md:rounded-lg lg:rounded-xl overflow-hidden transition-all duration-500 ease-in-out z-[20] flex justify-start items-start">
           <div className="p-3">
