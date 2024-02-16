@@ -10,7 +10,7 @@ import { pinDetailMorePinQuery, pinDetailQuery } from "../utils/data";
 import { client, urlFor } from "../utils/client";
 import { fetchUser } from "../utils/fetchUser";
 import { useOutSideClickShareMenu } from "../hooks/outSideClickShareMenu";
-import { Menu, ShareMenu } from "../components";
+import { ShareMenu } from "../components";
 import { saveFn } from "../utils/saveFn";
 import { useOutsideClick } from "../hooks/outsideClick";
 
@@ -193,12 +193,31 @@ export default function PinDetails() {
                 <ShareMenu shareUrl={shareUrl} ref2={ref2} />
               )}
               {visible && (
-                <Menu
+                <div
+                  className="absolute p-2 -bottom-28 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50"
                   ref={ref}
-                  url={pinDetail?.image?.asset?.url}
-                  handleHidePin={handleHidePin}
-                  handleReport={handleReport}
-                />
+                >
+                  <div
+                    onClick={handleHidePin}
+                    className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
+                  >
+                    Hide Pin
+                  </div>
+                  <a
+                    href={`${pinDetail?.image?.asset?.url}?dl=`}
+                    download
+                    onClick={(e) => e.stopPropagation()}
+                    className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                  >
+                    Download image
+                  </a>
+                  <div
+                    onClick={handleReport}
+                    className="block px-2 py-1.5 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
+                  >
+                    Report Pin
+                  </div>
+                </div>
               )}
             </div>
           </div>
