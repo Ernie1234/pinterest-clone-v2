@@ -4,9 +4,11 @@ import { UserContext } from "../hooks/contextUser";
 import { client } from "../utils/client";
 import { MdDelete } from "react-icons/md";
 import { SanityAssetDocument } from "@sanity/client";
+import { useNavigate } from "react-router-dom";
 
 export default function Create() {
   const user = useContext(UserContext);
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
@@ -21,6 +23,7 @@ export default function Create() {
   const [isAboutFocused, setIsAboutFocused] = useState(false);
   const [isDestFocused, setIsDestFocused] = useState(false);
 
+  // For selecting the image from device and listen to event change
   const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     const type = selectedFile?.type;
@@ -49,13 +52,50 @@ export default function Create() {
     }
   };
 
+  //  Handle form submission:for uploading the pin to sanity.io
+  const savePin = () => {
+    if (title && about && destination && image?._id && category) {
+      setImgLoading(true);
+      const doc = {
+        _type: "pin",
+        title,
+        about,
+        destination,
+        image: {
+          _type: "image",
+          asset: {
+            _type: "reference",
+            _ref: image?._id,
+          },
+        },
+        userId: user?._id,
+        postedBy: {
+          _type: "postedBy",
+          _ref: user?._id,
+        },
+        category,
+      };
+      client.create(doc).then(() => {
+        setImgLoading(false);
+        navigate("/feeds");
+      });
+    } else {
+      setFields(true);
+
+      setTimeout(() => {
+        setFields(false);
+      }, 2000);
+    }
+  };
+
   // to be deleted after it is set in the backend
   const catOptions = [
-    { id: 1, name: "Netflix" },
-    { id: 2, name: "Amazon Prime" },
-    { id: 3, name: "Hulu" },
-    { id: 4, name: "HBO" },
-    { id: 5, name: "Disney+" },
+    { id: 1, name: "Food" },
+    { id: 2, name: "Bedroom" },
+    { id: 3, name: "House" },
+    { id: 4, name: "Hobby" },
+    { id: 5, name: "Movie" },
+    { id: 6, name: "Cloths" },
   ];
 
   return (
@@ -120,7 +160,7 @@ export default function Create() {
               {/* save  button */}
               <button
                 className="w-full mt-3 bg-gray-200 p-3 rounded-full"
-                onClick={() => {}}
+                onClick={savePin}
               >
                 upload
               </button>
