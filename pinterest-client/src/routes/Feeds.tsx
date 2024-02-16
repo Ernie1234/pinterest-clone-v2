@@ -13,7 +13,6 @@ export default function Feeds() {
   useEffect(() => {
     setLoading(true);
     client.fetch(feedQuery).then((data) => {
-      console.log("Data fetched: ", data);
       setPins(data);
       setLoading(false);
     });
@@ -21,7 +20,8 @@ export default function Feeds() {
 
   if (loading)
     return (
-      <div className="min-h-screen w-full flex justify-center items-center pb-20">
+      <div className="min-h-screen w-full flex flex-col gap-3 justify-center items-center pb-20">
+        <p className="text-lg">Loading Pins...</p>
         <Circles
           height="80"
           width="80"

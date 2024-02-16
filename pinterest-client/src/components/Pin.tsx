@@ -169,7 +169,7 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
           </div>
         )}
       </div>
-      {visibleShareMenu && <ShareMenu shareUrl={shareUrl} ref2={ref2} />}
+      {visibleShareMenu && <ShareMenu shareUrl={shareUrl} ref2={ref2} right />}
       {visible && (
         <div
           className="absolute p-2 -bottom-28 -right-8 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50"

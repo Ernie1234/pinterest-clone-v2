@@ -36,4 +36,5 @@ export type TPin = {
     username: string;
     avatar: string;
   };
+  category: string;
 };

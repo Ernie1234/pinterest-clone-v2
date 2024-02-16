@@ -15,10 +15,11 @@ import { IoPeople } from "react-icons/io5";
 
 interface ISharemenuProps {
   shareUrl: string;
+  right?: boolean;
   ref2: React.RefObject<HTMLDivElement>;
 }
 
-export default function ShareMenu({ shareUrl, ref2 }: ISharemenuProps) {
+export default function ShareMenu({ shareUrl, ref2, right }: ISharemenuProps) {
   const handleCopyLink = () => {
     navigator.clipboard
       .writeText(shareUrl)
@@ -31,7 +32,11 @@ export default function ShareMenu({ shareUrl, ref2 }: ISharemenuProps) {
   };
   return (
     <div
-      className="absolute p-5 -bottom-28 right-8 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50 divide-y divide-gray-500 flex flex-col justify-center items-center"
+      className={`${
+        right
+          ? "absolute p-5 -bottom-28 right-8 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50 divide-y divide-gray-500 flex flex-col justify-center items-center"
+          : "absolute p-5 top-20 -left-20 rounded-md md:rounded-lg lg:rounded-xl bg-white shadow-sm md:shadow-md lg:shadow-lg z-50 divide-y divide-gray-500 flex flex-col justify-center items-center"
+      } `}
       ref={ref2}
     >
       <div className="pb-5">
