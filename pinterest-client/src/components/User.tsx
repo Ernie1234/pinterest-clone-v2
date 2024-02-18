@@ -1,42 +1,54 @@
-import { memo } from "react";
+import { Link } from "react-router-dom";
 
-interface Props {
-  profile: any;
-  provider: string;
-  onLogout: () => void;
-}
+type UserProps = {
+  imgSrc: string;
+  name?: string;
+  email?: string;
+  imgSize?: number;
+  margin?: number;
+  userId: string;
+  follow?: boolean;
+};
 
-export const User = memo(({ provider, profile, onLogout }: Props) => {
-  const avatar =
-    profile?.avatar ||
-    profile?.profile_image_url ||
-    profile?.avatar_url ||
-    profile?.picture ||
-    profile?.picture?.data?.url ||
-    profile?.profile_image_url_https ||
-    "https://maxcdn.icons8.com/Share/icon/p1em/users//gender_neutral_user1600.png";
-
+export default function User({
+  imgSrc,
+  name,
+  email,
+  imgSize = 10,
+  margin = 4,
+  userId,
+  follow = true,
+}: UserProps) {
   return (
-    <div className="card">
-      <div className="avt">
-        <img alt="141" src={avatar} />
-      </div>
-
-      <h3 className="provider">{provider.toUpperCase()}</h3>
-
-      <div className="content">
-        <div className="data">
-          {Object.entries(profile).map(([key, value]: any) => (
-            <div className="field" key={key}>
-              <div className="label">{key}: </div>
-              <div className="value">{JSON.stringify(value)}</div>
+    <>
+      {follow ? (
+        <Link
+          to={`/user/${userId}`}
+          className={`mb-${margin} flex justify-between items-center cursor-pointer`}
+        >
+          <div className="flex justify-center items-center gap-4">
+            <img
+              src={imgSrc}
+              alt={name}
+              className={`h-${imgSize} w-${imgSize} rounded-full`}
+            />
+            <div>
+              <p className="font-medium">{name}</p>
+              {email && <p>{email}</p>}
             </div>
-          ))}
-        </div>
-        <button className="btnLogout" onClick={onLogout}>
-          Logout
-        </button>
-      </div>
-    </div>
+          </div>
+
+          <button className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-normal py-2 px-4 rounded-full">
+            follow
+          </button>
+        </Link>
+      ) : (
+        <img
+          src={imgSrc}
+          alt={name}
+          className={`h-${imgSize} w-${imgSize} rounded-full cursor-pointer`}
+        />
+      )}
+    </>
   );
-});
+}

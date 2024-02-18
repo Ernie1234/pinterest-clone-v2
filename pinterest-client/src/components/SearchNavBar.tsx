@@ -76,8 +76,8 @@ export default function SearchNavBar() {
           </div>
           {/* user avatar */}
           <div className="flex gap-6 lg:gap-8" id="right">
-            {user ? (
-              <Link to="/profile">
+            {user?.picture ? (
+              <Link to={`/user/${user.aud}`}>
                 <img
                   className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
                   src={user?.picture}
@@ -86,20 +86,11 @@ export default function SearchNavBar() {
               </Link>
             ) : (
               <Link to="/">
-                <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                  <svg
-                    className="absolute w-12 h-12 text-gray-400 -left-1"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
+                <img
+                  src="https://coenterprises.com.au/wp-content/uploads/2018/02/male-placeholder-image.jpeg"
+                  alt={"name"}
+                  className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
+                />
               </Link>
             )}
           </div>
@@ -128,9 +119,9 @@ export default function SearchNavBar() {
                         <div
                           onClick={() => {
                             handleCloseMenu;
-                            navigate("/profile", { replace: true });
+                            navigate(`/user/${user.aud}`, { replace: true });
                           }}
-                          className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 "
+                          className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
                         >
                           <div className="flex gap-3 items-center">
                             <img

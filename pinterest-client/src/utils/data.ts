@@ -82,14 +82,14 @@ export const pinDetailQuery = (pinId: string | undefined) => {
     destination,
     postedBy->{
       _id,
-      userName,
-      image
+     username,
+      avatar
     },
    save[]{
       postedBy->{
         _id,
-        userName,
-        image
+       username,
+      avatar
       },
     },
     comments[]{
@@ -97,8 +97,8 @@ export const pinDetailQuery = (pinId: string | undefined) => {
       _key,
       postedBy->{
         _id,
-        userName,
-        image
+        username,
+      avatar
       },
     }
   }`;
@@ -116,17 +116,71 @@ export const pinDetailMorePinQuery = (pin: TPin) => {
     destination,
     postedBy->{
       _id,
-      userName,
-      image
+     username,
+      avatar
     },
     save[]{
       _key,
       postedBy->{
         _id,
-        userName,
-        image
+       username,
+      avatar
       },
     },
   }`;
+  return query;
+};
+
+export const userCreatedPinsQuery = (userId: string) => {
+  const query = `*[ _type == 'pin' && userId == '${userId}'] | order(_createdAt desc){
+    image{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+    save[]{
+      postedBy->{
+        _id,
+        username,
+      avatar
+      },
+    },
+  }`;
+  return query;
+};
+
+export const userSavedPinsQuery = (userId: string) => {
+  const query = `*[_type == 'pin' && '${userId}' in save[].userId ] | order(_createdAt desc) {
+    image{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+    save[]{
+      postedBy->{
+        _id,
+        username,
+      avatar
+      },
+    },
+  }`;
+  return query;
+};
+export const userQuery = (userId: string) => {
+  const query = `*[_type == 'user' && _id == '${userId}']`;
   return query;
 };

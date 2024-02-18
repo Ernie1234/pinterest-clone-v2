@@ -21,7 +21,9 @@ export default function Feeds() {
   if (loading)
     return (
       <div className="min-h-screen w-full flex flex-col gap-3 justify-center items-center pb-20">
-        <p className="text-lg">Loading Pins...</p>
+        <p className="text-2xl pb-5 font-semibold">
+          We're adding new ideas to your home feed!
+        </p>
         <Circles
           height="80"
           width="80"

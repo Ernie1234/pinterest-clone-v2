@@ -7,14 +7,27 @@ export type TUser = {
   aud: string;
   email_verified: boolean;
 };
+export type TSanityUser = {
+  _id: string | (string[] & string);
+  _type: string;
+  username: string;
+  avatar: string;
+};
 
 export type TPostedBy = {
   _id: string;
   username: string;
   avatar: string;
 };
+
 export type TSave = {
   _key: string;
+  postedBy: TPostedBy;
+};
+
+export type TComment = {
+  _key: string;
+  comment: string;
   postedBy: TPostedBy;
 };
 
@@ -38,3 +51,9 @@ export type TPin = {
   };
   category: string;
 };
+
+export interface TPinDetail extends TPin {
+  comments: TComment[] | [];
+  about: string;
+  title: string;
+}

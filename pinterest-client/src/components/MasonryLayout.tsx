@@ -4,7 +4,7 @@ import Pin from "./Pin";
 import { TPin } from "../types/types";
 
 type Props = {
-  pins: TPin[];
+  pins: TPin[] | [];
 };
 
 export default function MasonryLayout({ pins }: Props) {
@@ -18,7 +18,7 @@ export default function MasonryLayout({ pins }: Props) {
   };
   return (
     <Masonry breakpointCols={breakpointColumnsObj} className="flex">
-      {pins.map((pin: TPin) => (
+      {pins?.map((pin: TPin) => (
         <Pin key={pin._id} pin={pin} />
       ))}
     </Masonry>

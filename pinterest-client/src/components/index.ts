@@ -1,3 +1,4 @@
+export { default as User } from "./User";
 export { default as Menu } from "./Menu";
 export { default as Login } from "./Login";
 export { default as Button } from "./Button";
