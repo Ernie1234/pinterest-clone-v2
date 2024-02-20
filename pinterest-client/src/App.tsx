@@ -5,6 +5,7 @@ import {
   Feeds,
   Home,
   PinDetails,
+  SearchPage,
   UserProfile,
   VideosPage,
 } from "./routes";
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/feeds" element={<Feeds />} />
           <Route path="/create" element={<Create />} />
           <Route path="/user/:userId" element={<UserProfile />} />
+          <Route path="/search/:searchTerm" element={<SearchPage />} />
           <Route path="/pin-detail/:pinId" element={<PinDetails />} />
           <Route path="/videos" element={<VideosPage />} />
           <Route path="/explore" element={<ExplorePage />} />

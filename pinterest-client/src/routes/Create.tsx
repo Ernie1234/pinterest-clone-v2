@@ -7,6 +7,7 @@ import { Circles } from "react-loader-spinner";
 
 import { UserContext } from "../hooks/contextUser";
 import { client } from "../utils/client";
+import { catOptions } from "../utils/categories";
 
 export default function Create() {
   const user = useContext(UserContext);
@@ -91,21 +92,6 @@ export default function Create() {
       }, 2000);
     }
   };
-
-  // to be deleted after it is set in the backend
-  const catOptions = [
-    { id: 1, name: "Food" },
-    { id: 2, name: "Bedroom" },
-    { id: 3, name: "House" },
-    { id: 4, name: "Hobby" },
-    { id: 5, name: "Movie" },
-    { id: 6, name: "Cloths" },
-    { id: 7, name: "Code" },
-    { id: 8, name: "Computer" },
-    { id: 9, name: "Shoes" },
-    { id: 10, name: "Books" },
-    { id: 11, name: "Office" },
-  ];
 
   return (
     <div className="flex bg-gray-200">

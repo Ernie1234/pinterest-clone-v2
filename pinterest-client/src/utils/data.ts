@@ -21,7 +21,7 @@ export const footers = [
 // const query = `*[_type == "pin" && title match '${searchTerm}*'  || _type == "video" && name match '${searchTerm}*']`;
 export const searchQuery = (searchTerm: string) => {
   const query = `*[_type == 'pin' && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
-    image{
+     image{
       asset -> {
         url
       }
