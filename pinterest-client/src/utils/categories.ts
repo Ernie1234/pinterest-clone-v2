@@ -45,6 +45,17 @@ export const catOptions = [
   { id: 44, name: "Cartoon" },
   { id: 45, name: "Toys" },
   { id: 46, name: "Music" },
+  { id: 47, name: "Unique iphone wallpaper" },
+  { id: 48, name: "Valentines gift for girlfriend" },
+  { id: 49, name: "Tattoo ideas for men" },
+  { id: 50, name: "Bedroom interior" },
+  { id: 51, name: "Tight Dress outfit" },
+  { id: 52, name: "Mid century modern house" },
+  { id: 53, name: "Minimal interior design" },
+  { id: 54, name: "Christmas colors" },
+  { id: 55, name: "Interior plants" },
+  { id: 56, name: "Trendy shirt designs" },
+  { id: 57, name: "Vintage watches women" },
 ];
 export const Popularcatalogue = [
   {

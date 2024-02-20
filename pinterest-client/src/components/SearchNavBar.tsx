@@ -72,6 +72,7 @@ export default function SearchNavBar() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     navigate(`/search/${searchTerm}`, { replace: true });
+                    window.location.reload();
                   }
                 }}
                 // onBlur={() => {
