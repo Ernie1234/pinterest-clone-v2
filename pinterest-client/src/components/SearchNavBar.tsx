@@ -25,6 +25,19 @@ export default function SearchNavBar() {
     setFocused((prev) => !prev);
   };
 
+  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      navigate(`/search/${searchTerm}`, { replace: true });
+      window.location.reload();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <>
       <nav className="bg-white sticky w-full z-[100] top-0 start-0 border-b border-gray-200 shadow-md">
@@ -68,13 +81,8 @@ export default function SearchNavBar() {
                 onFocus={() => {
                   setFocused((prev) => !prev);
                 }}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    navigate(`/search/${searchTerm}`, { replace: true });
-                    window.location.reload();
-                  }
-                }}
+                onChange={handleChange}
+                onKeyDown={handleKeydown}
                 // onBlur={() => {
                 //   setFocused((prev) => !prev);
                 // }}
