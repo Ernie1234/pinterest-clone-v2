@@ -186,6 +186,7 @@ export default function Create() {
                         onChange={(e) => {
                           setCategory(e.target.value);
                         }}
+                        defaultValue="others"
                       >
                         <option selected value="others">
                           Choose a Category
