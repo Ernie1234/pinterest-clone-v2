@@ -293,7 +293,7 @@ export default function PinDetails() {
               {pinDetail.about.length >= 150 ? (
                 <p className="mb-4">
                   {isAbout ? pinDetail.about : pinDetail?.about.slice(0, 130)}
-                  ...{" "}
+                  {isAbout ? " " : "..."}{" "}
                   {isAbout ? (
                     <span
                       className="inline-block text-nowrap cursor-pointer font-medium"
