@@ -11,7 +11,7 @@ import { Search } from ".";
 export default function SearchNavBar() {
   const user = useContext(UserContext);
   const navigate = useNavigate();
-  // console.log(user);
+  console.log(user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -106,7 +106,7 @@ export default function SearchNavBar() {
             {/* user avatar */}
             <div className="flex gap-6 lg:gap-8" id="right">
               {user?.picture ? (
-                <Link to={`/user/${user.aud}`}>
+                <Link to={`/user/${user._id}`}>
                   <img
                     className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
                     src={user?.picture}
@@ -148,7 +148,7 @@ export default function SearchNavBar() {
                           <div
                             onClick={() => {
                               handleCloseMenu;
-                              navigate(`/user/${user.aud}`, { replace: true });
+                              navigate(`/user/${user._id}`, { replace: true });
                             }}
                             className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
                           >

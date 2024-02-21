@@ -84,7 +84,7 @@ export default function PinDetails() {
 
   //  Rendering of JSX based on whether or not there are pins already saved for that Pin ID
   const alreadySaved = !!pinDetail?.save?.filter(
-    (item) => item.postedBy?._id === user.aud
+    (item) => item.postedBy?._id === user.sub
   )?.length;
 
   // Function for toggling Undo button between "Hide" and "UnHide"
@@ -117,7 +117,7 @@ export default function PinDetails() {
             _key: uuidv4(),
             postedBy: {
               _type: "postedBy",
-              _ref: user.aud,
+              _ref: user.sub,
             },
           },
         ])
@@ -131,7 +131,7 @@ export default function PinDetails() {
     } else alert("Please enter some text to submit!");
 
     //     .append('comments', [
-    //       {text: commentText, postedBy: user.aud},
+    //       {text: commentText, postedBy: user.sub},
     //     ]).commit().then(()=>{
     //       setCommentText('');
     //       setTimeout(()=>{

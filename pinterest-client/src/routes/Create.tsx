@@ -57,7 +57,7 @@ export default function Create() {
   };
 
   //  Handle form submission:for uploading the pin to sanity.io
-  // console.log(user?.aud);
+  // console.log(user?.sub);
   const savePin = () => {
     if (title && about && destination && image?._id && category && user) {
       setPinLoading(true);
@@ -73,10 +73,10 @@ export default function Create() {
             _ref: image._id,
           },
         },
-        userId: user.aud,
+        userId: user.sub,
         postedBy: {
           _type: "postedBy",
-          _ref: user.aud,
+          _ref: user.sub,
         },
         category,
       };

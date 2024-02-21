@@ -16,7 +16,7 @@ export default function Login() {
             credentialResponse.credential as string
           );
           // SAVING TO THE LOCAL STORAGE
-          const { name, aud, picture } = credentialResponseDecode;
+          const { name, sub, picture } = credentialResponseDecode;
           localStorage.setItem(
             "user",
             JSON.stringify(credentialResponseDecode)
@@ -24,7 +24,7 @@ export default function Login() {
           // SAVING TO THE SANITY STUDIO
           try {
             const createdDoc = await client.createIfNotExists({
-              _id: aud,
+              _id: sub,
               _type: "user",
               username: name,
               avatar: picture,

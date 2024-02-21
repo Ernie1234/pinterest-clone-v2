@@ -14,10 +14,10 @@ export const saveFn = (id: string, alreadySaved: boolean) => {
       .insert("after", "save[-1]", [
         {
           _key: uuidv4(),
-          userId: user.aud,
+          userId: user.sub,
           postedBy: {
             _type: "postedBy",
-            _ref: user.aud,
+            _ref: user.sub,
           },
         },
       ])

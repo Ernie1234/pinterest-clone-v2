@@ -33,8 +33,9 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
   //   const shareUrl =
   //     "https://www.linkedin.com/pulse/reusable-share-button-using-solid-principles-react-rafael-perozin/";
 
-  const alreadySaved = !!save?.filter((item) => item.postedBy?._id === user.aud)
-    ?.length;
+  const alreadySaved = !!save?.filter(
+    (item) => item.postedBy?._id === user?.sub
+  )?.length;
   //   const alreadySaved = !!save?.filter((item) => item.postedBy?._id === user._id)?.length;
 
   const handleMenuState = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -50,10 +51,10 @@ export default function Pin({ pin: { image, _id, destination, save } }: Props) {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user.aud,
+            userId: user.sub,
             postedBy: {
               _type: "postedBy",
-              _ref: user.aud,
+              _ref: user.sub,
             },
           },
         ])

@@ -4,7 +4,7 @@ export type TUser = {
   name: string;
   picture: string;
   email: string;
-  aud: string;
+  sub: string;
   email_verified: boolean;
 };
 export type TSanityUser = {
