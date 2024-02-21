@@ -95,9 +95,7 @@ export default function Create() {
 
   return (
     <div className="flex bg-gray-200">
-      <div className="flex flex-col gap-y-10 bg-purple-800 h-full max-w-fit">
-        Lorem
-      </div>
+      <div className="flex flex-col gap-y-10 bg-purple-800 h-full max-w-fit"></div>
       {pinLoading ? (
         <div className="min-h-screen w-full flex justify-center items-center pb-20">
           <Circles
