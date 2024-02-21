@@ -84,7 +84,7 @@ export default function PinDetails() {
 
   //  Rendering of JSX based on whether or not there are pins already saved for that Pin ID
   const alreadySaved = !!pinDetail?.save?.filter(
-    (item) => item.postedBy?._id === user.sub
+    (item) => item.postedBy?._id === user?.sub
   )?.length;
 
   // Function for toggling Undo button between "Hide" and "UnHide"
@@ -123,6 +123,7 @@ export default function PinDetails() {
         ])
         .commit()
         .then(() => {
+          window.location.reload();
           fetchPinDetails();
           setCommentText("");
           setLoading(false);

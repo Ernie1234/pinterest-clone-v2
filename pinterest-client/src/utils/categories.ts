@@ -62,7 +62,7 @@ export const Popularcatalogue = [
     id: 1,
     searchTerm: "Unique iphone wallpaper",
     imgUrl:
-      "https://i.pinimg.com/564x/60/51/e7/6051e72fb4d0b561e9340409bfa144f9.jpg",
+      "https://i.pinimg.com/564x/05/c3/bb/05c3bb77b0032fc4e523354bff73baf2.jpg",
   },
   {
     id: 2,
