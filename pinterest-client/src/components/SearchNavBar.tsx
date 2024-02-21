@@ -148,7 +148,7 @@ export default function SearchNavBar() {
                           <div
                             onClick={() => {
                               handleCloseMenu;
-                              navigate(`/user/${user._id}`, { replace: true });
+                              navigate(`/user/${user.sub}`, { replace: true });
                             }}
                             className="block my-1 px-4 py-2 rounded-sm md:rounded-md lg:rounded-lg font-semibold text-black hover:bg-gray-200 cursor-pointer"
                           >
