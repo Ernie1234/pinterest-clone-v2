@@ -106,7 +106,7 @@ export default function SearchNavBar() {
             {/* user avatar */}
             <div className="flex gap-6 lg:gap-8" id="right">
               {user?.picture ? (
-                <Link to={`/user/${user._id}`}>
+                <Link to={`/user/${user.sub}`}>
                   <img
                     className="w-10 h-10 p-1 rounded-full ring-transparent ring-slate-300 hover:ring-2"
                     src={user?.picture}
