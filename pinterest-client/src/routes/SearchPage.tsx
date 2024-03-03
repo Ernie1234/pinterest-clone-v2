@@ -17,8 +17,6 @@ export default function SearchPage() {
       const query = searchQuery(searchTerm.toLowerCase());
       client.fetch(query).then((data) => {
         setPins(data);
-        console.log(data);
-        console.log(pins);
         setLoading(false);
       });
     }
@@ -26,7 +24,6 @@ export default function SearchPage() {
 
   useEffect(() => {
     handleSearch();
-    console.log(pins);
   }, [searchTerm]);
   if (loading) {
     return <p>loading...</p>;

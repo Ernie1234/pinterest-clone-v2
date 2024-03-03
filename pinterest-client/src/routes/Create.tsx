@@ -57,7 +57,6 @@ export default function Create() {
   };
 
   //  Handle form submission:for uploading the pin to sanity.io
-  // console.log(user?.sub);
   const savePin = () => {
     if (title && about && destination && image?._id && category && user) {
       setPinLoading(true);
@@ -110,7 +109,7 @@ export default function Create() {
         </div>
       ) : (
         <div className="flex-1 flex justify-center  w-full min-h-screen py-12">
-          <div className="w-3/5 p-3 md:p-6 lg:p-12 flex flex-col justify-center items-center gap-3 md:gap-6 lg:gap-12 bg-white rounded-md md:rounded-lg lg:rounded-xl shadow-md md:shadow-lg lg:shadow-xl">
+          <div className="lg:w-3/5 md:w-10/12 w-full p-5 md:p-6 lg:p-12 flex flex-col justify-center items-center gap-3 md:gap-6 lg:gap-12 bg-white rounded-md md:rounded-lg lg:rounded-xl shadow-md md:shadow-lg lg:shadow-xl">
             {fields && (
               <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in ">
                 Please fill in all the fields!
@@ -118,8 +117,11 @@ export default function Create() {
             )}
 
             {/* the main element of upload */}
-            <div className="flex flex-col md:flex-row md:gap-6 lg:gap-12 ">
-              <div className="flex flex-col" id="left section">
+            <div className="flex flex-col md:flex-row md:gap-6 lg:gap-12">
+              <div
+                className="flex flex-col order-2 md:order-1"
+                id="left section"
+              >
                 {/* Image upload section */}
                 <div className="lg:w-72 h-[30rem] bg-gray-200 rounded-md md:rounded-lg lg:rounded-xl p-4 flex justify-center items-center cursor-pointer">
                   {/* image upload section that add border */}

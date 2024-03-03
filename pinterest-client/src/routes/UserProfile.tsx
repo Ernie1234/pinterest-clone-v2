@@ -42,7 +42,6 @@ export default function UserProfile() {
       const createdPinsQuery = userCreatedPinsQuery(userId);
       client.fetch(createdPinsQuery).then((data) => {
         setPins(data);
-        console.log(pins);
       });
     }
   };

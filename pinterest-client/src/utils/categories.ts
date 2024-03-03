@@ -56,19 +56,27 @@ export const catOptions = [
   { id: 55, name: "Interior plants" },
   { id: 56, name: "Trendy shirt designs" },
   { id: 57, name: "Vintage watches women" },
+  { id: 58, name: "trouser" },
+  { id: 59, name: "design" },
+  { id: 60, name: "quoto" },
+  { id: 61, name: "football" },
+  { id: 62, name: "sport" },
+  { id: 63, name: "Fit body goals" },
+  { id: 64, name: "Male native wears" },
+  { id: 65, name: "Chic dress classy" },
 ];
 export const Popularcatalogue = [
   {
     id: 1,
-    searchTerm: "Unique iphone wallpaper",
+    searchTerm: "Fit body goals",
     imgUrl:
-      "https://i.pinimg.com/564x/05/c3/bb/05c3bb77b0032fc4e523354bff73baf2.jpg",
+      "https://i.pinimg.com/564x/09/70/ad/0970ada0a70a8eaf13796e57be623bf7.jpg",
   },
   {
     id: 2,
-    searchTerm: "Valentines gift for girlfriend",
+    searchTerm: "Male native wears",
     imgUrl:
-      "https://i.pinimg.com/736x/6f/03/bb/6f03bb062b3a7affcf1ba5a596d45927.jpg",
+      "https://i.pinimg.com/236x/f7/38/a3/f738a35cec0613ee52e224e2258633cb.jpg",
   },
   {
     id: 3,
@@ -87,9 +95,9 @@ export const Popularcatalogue = [
 export const catalogueIdeas = [
   {
     id: 1,
-    searchTerm: "Tight Dress outfit",
+    searchTerm: "Chic dress classy",
     imgUrl:
-      "https://i.pinimg.com/564x/60/51/e7/6051e72fb4d0b561e9340409bfa144f9.jpg",
+      "https://i.pinimg.com/236x/bf/c6/58/bfc658a02c3b72ff26c16b6f2ba8ce67.jpg",
   },
   {
     id: 2,

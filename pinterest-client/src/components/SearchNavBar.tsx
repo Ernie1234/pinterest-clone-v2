@@ -11,7 +11,6 @@ import { Search } from ".";
 export default function SearchNavBar() {
   const user = useContext(UserContext);
   const navigate = useNavigate();
-  console.log(user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [focused, setFocused] = useState(false);

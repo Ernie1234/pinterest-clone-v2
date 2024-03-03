@@ -28,13 +28,13 @@ export default function SignUpSection() {
         <div className="flex-1 flex justify-center items-center relative ">
           <div
             onClick={handleClickScroll}
-            className="h-12 w-12 flex justify-center items-center bg-pink-900 text-white shadow-sm md:shadow-md lg:shadow-lg rounded-full absolute top-24 -left-10 z-50 cursor-pointer"
+            className="h-12 w-12 hidden md:flex justify-center items-center bg-pink-900 text-white shadow-sm md:shadow-md lg:shadow-lg rounded-full absolute top-24 -left-10 z-50 cursor-pointer"
           >
             <FaChevronUp size={30} />
           </div>
           <form
             action="#"
-            className="bg-white w-3/5 h-screen py-5 md:py-16 px-5 md:px-16 lg:px-24 z-30 flex flex-col items-center "
+            className="bg-white w-full md:w-3/5 h-screen py-5 md:py-16 px-5 md:px-16 lg:px-24 z-30 flex flex-col items-center "
           >
             <img
               src="/assets/pinterest-logo.png"

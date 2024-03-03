@@ -4,7 +4,7 @@ import { Button } from ".";
 export default function SaveIdeasSection() {
   return (
     <div className="bg-green-100 h-screen flex flex-col md:flex-row justify-center ">
-      <div className="flex-1 flex flex-col justify-center items-center">
+      <div className="flex-1 order-2 md:order-1 flex flex-col justify-center items-center">
         <h2 className="text-green-800 font-bold capitalize text-lg md:text-2xl lg:text-6xl">
           Save ideas you like
         </h2>

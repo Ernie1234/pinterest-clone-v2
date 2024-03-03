@@ -10,11 +10,12 @@ type Props = {
 export default function MasonryLayout({ pins }: Props) {
   const breakpointColumnsObj = {
     default: 4,
-    3000: 6,
-    2000: 5,
-    1200: 3,
-    1000: 2,
-    500: 1,
+    3000: 7,
+    2000: 6,
+    1200: 5,
+    1000: 4,
+    800: 3,
+    500: 2,
   };
   return (
     <Masonry breakpointCols={breakpointColumnsObj} className="flex">

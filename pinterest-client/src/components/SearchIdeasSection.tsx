@@ -25,7 +25,7 @@ export default function SearchIdeasSection() {
           <img
             src="https://s.pinimg.com/webapp/topRight-6902088a.png"
             alt="searchIdeaSectionImage"
-            className="w-48 z-[2] -ml-28 -mt-96"
+            className="w-48 z-[2] -ml-28 md:-mt-96 -mt-60"
           />
           <img
             src="https://s.pinimg.com/webapp/right-2bd1edfc.png"

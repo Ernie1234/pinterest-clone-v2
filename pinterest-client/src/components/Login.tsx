@@ -23,20 +23,19 @@ export default function Login() {
           );
           // SAVING TO THE SANITY STUDIO
           try {
-            const createdDoc = await client.createIfNotExists({
+            await client.createIfNotExists({
               _id: sub,
               _type: "user",
               username: name,
               avatar: picture,
             });
             navigate("/feeds", { replace: true });
-            console.log(createdDoc);
           } catch (error) {
-            console.log(error);
+            throw new Error("Error while creating the user in Sanity");
           }
         }}
         onError={() => {
-          console.log("Login Failed");
+          throw new Error("Login Failed");
         }}
         shape="pill"
         text="signin"
