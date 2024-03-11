@@ -4,7 +4,9 @@ import {
   ExplorePage,
   Feeds,
   Home,
+  IdeaDetails,
   PinDetails,
+  PostVideoDetail,
   SearchPage,
   UserProfile,
   VideosPage,
@@ -29,7 +31,9 @@ const App = () => {
           <Route path="/search/:searchTerm" element={<SearchPage />} />
           <Route path="/pin-detail/:pinId" element={<PinDetails />} />
           <Route path="/videos" element={<VideosPage />} />
+          <Route path="/videos/:videoId" element={<PostVideoDetail />} />
           <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/explore/:ideaId" element={<IdeaDetails />} />
         </Routes>
       </div>
     </UserContext.Provider>

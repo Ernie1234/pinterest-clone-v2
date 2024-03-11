@@ -97,7 +97,9 @@ function PostPin({
           onMouseLeave={() => setPostHovered(false)}
           onClick={() => {
             user.email_verified
-              ? navigate(`/pin-detail/${_id}`)
+              ? video
+                ? navigate(`/videos/${_id}`)
+                : navigate(`/explore/${_id}`)
               : navigate("/", { replace: true });
           }}
         >

@@ -1,4 +1,4 @@
-import { TPin } from "../types/types";
+import { TPin, TPost } from "../types/types";
 
 export const footers = [
   "Terms of Service",
@@ -210,6 +210,68 @@ export const postQuery = `*[_type == 'post'] | order(_createdAt desc, _updatedAt
     },
     }
 }`;
+export const postDetailsQuery = (videoId: string | undefined) => {
+  const query = `*[_type == "post" && _id == '${videoId}']{
+    video{
+      asset->{
+        url
+      }
+    },
+    _id,
+    title, 
+    about,
+    category,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+   save[]{
+      postedBy->{
+        _id,
+       username,
+      avatar
+      },
+    },
+    comments[]{
+      comment,
+      _key,
+      postedBy->{
+        _id,
+        username,
+      avatar
+      },
+    }
+  }`;
+  return query;
+};
+export const postDetailMorePinQuery = (pin: TPost) => {
+  const query = `*[_type == "post" && category == '${pin.category}' && _id != '${pin._id}' ]{
+    video{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+    save[]{
+      _key,
+      postedBy->{
+        _id,
+       username,
+      avatar
+      },
+    },
+  }`;
+  return query;
+};
+
 export const ideaQuery = `*[_type == 'idea'] | order(_createdAt desc, _updatedAt asc) {
     image{
       asset -> {
@@ -235,3 +297,65 @@ export const ideaQuery = `*[_type == 'idea'] | order(_createdAt desc, _updatedAt
     },
     }
 }`;
+
+export const ideaDetailsQuery = (ideaId: string | undefined) => {
+  const query = `*[_type == "idea" && _id == '${ideaId}']{
+    image{
+      asset->{
+        url
+      }
+    },
+    _id,
+    title, 
+    about,
+    category,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+   save[]{
+      postedBy->{
+        _id,
+       username,
+      avatar
+      },
+    },
+    comments[]{
+      comment,
+      _key,
+      postedBy->{
+        _id,
+        username,
+      avatar
+      },
+    }
+  }`;
+  return query;
+};
+export const ideaDetailMorePinQuery = (idea: TPost) => {
+  const query = `*[_type == "idea" && category == '${idea.category}' && _id != '${idea._id}' ]{
+    image{
+      asset->{
+        url
+      }
+    },
+    _id,
+    destination,
+    postedBy->{
+      _id,
+     username,
+      avatar
+    },
+    save[]{
+      _key,
+      postedBy->{
+        _id,
+       username,
+      avatar
+      },
+    },
+  }`;
+  return query;
+};

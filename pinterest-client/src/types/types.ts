@@ -57,11 +57,19 @@ export interface TPinDetail extends TPin {
   about: string;
   title: string;
 }
+export interface TPostDetails extends TPost {
+  comments: TComment[] | [];
+}
 
 export type TPost = {
   title: string;
   _id: string;
   destination?: string;
+  image: {
+    asset: {
+      url: string;
+    };
+  };
   video: {
     asset: {
       url: string;

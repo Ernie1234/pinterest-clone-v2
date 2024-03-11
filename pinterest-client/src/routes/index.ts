@@ -3,6 +3,8 @@ export { default as Blog } from "./Blog";
 export { default as Feeds } from "./Feeds";
 export { default as Create } from "./Create";
 export { default as VideosPage } from "./VideosPage";
+export { default as IdeaDetails } from "./IdeaDetails";
+export { default as PostVideoDetail } from "./PostVideoDetail";
 export { default as SearchPage } from "./SearchPage";
 export { default as UserProfile } from "./UserProfile";
 export { default as PinDetails } from "./PinDetails";
