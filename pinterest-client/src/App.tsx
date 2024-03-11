@@ -8,6 +8,7 @@ import {
   PinDetails,
   PostVideoDetail,
   SearchPage,
+  Settings,
   UserProfile,
   VideosPage,
 } from "./routes";
@@ -26,6 +27,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/feeds" element={<Feeds />} />
+          <Route path="/setting" element={<Settings />} />
           <Route path="/create" element={<Create />} />
           <Route path="/user/:userId" element={<UserProfile />} />
           <Route path="/search/:searchTerm" element={<SearchPage />} />
