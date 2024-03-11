@@ -10,3 +10,4 @@ export { default as UserProfile } from "./UserProfile";
 export { default as PinDetails } from "./PinDetails";
 export { default as ExplorePage } from "./ExplorePage";
 export { default as NotFound } from "./NotFound";
+export { default as Settings } from "./Settings";
