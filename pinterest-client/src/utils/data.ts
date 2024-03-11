@@ -184,3 +184,54 @@ export const userQuery = (userId: string) => {
   const query = `*[_type == 'user' && _id == '${userId}']`;
   return query;
 };
+
+export const postQuery = `*[_type == 'post'] | order(_createdAt desc, _updatedAt asc) {
+    video{
+      asset -> {
+        url
+      }
+    },
+    _id,
+    title,
+    about,
+    category,
+    destination,
+    postedBy -> {
+      _id,
+      username,
+      avatar
+    },
+    save[] {
+      _key,
+       postedBy -> {
+      _id,
+      username,
+      avatar
+    },
+    }
+}`;
+export const ideaQuery = `*[_type == 'idea'] | order(_createdAt desc, _updatedAt asc) {
+    image{
+      asset -> {
+        url
+      }
+    },
+    _id,
+    title,
+    about,
+    category,
+    destination,
+    postedBy -> {
+      _id,
+      username,
+      avatar
+    },
+    save[] {
+      _key,
+       postedBy -> {
+      _id,
+      username,
+      avatar
+    },
+    }
+}`;

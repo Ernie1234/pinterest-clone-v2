@@ -57,3 +57,22 @@ export interface TPinDetail extends TPin {
   about: string;
   title: string;
 }
+
+export type TPost = {
+  title: string;
+  _id: string;
+  destination?: string;
+  video: {
+    asset: {
+      url: string;
+    };
+  };
+  save?: TSave[];
+  postedBy: {
+    _id: string;
+    username: string;
+    avatar: string;
+  };
+  category: string;
+  about: string;
+};

@@ -64,6 +64,7 @@ export const catOptions = [
   { id: 63, name: "Fit body goals" },
   { id: 64, name: "Male native wears" },
   { id: 65, name: "Chic dress classy" },
+  { id: 66, name: "Meme" },
 ];
 export const Popularcatalogue = [
   {

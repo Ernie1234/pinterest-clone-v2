@@ -45,7 +45,7 @@ export default function Navbar() {
                 business
               </li>
             </Link>
-            <Link to="/blog">
+            <Link to="https://pinterest-blog.vercel.app/" target="_blank">
               <li className="block py-2 px-3 font-semibold text-gray-950 hover:underline decoration-1 rounded-md capitalize">
                 blog
               </li>

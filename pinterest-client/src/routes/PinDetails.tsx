@@ -166,7 +166,7 @@ export default function PinDetails() {
     <div className="relative">
       <Link
         to="/feeds"
-        className="fixed left-3 pt-5 flex justify-center items-center gap-3"
+        className="fixed z-[1000] left-3 pt-5 flex justify-center items-center gap-3"
       >
         <div
           className={`${
@@ -178,17 +178,17 @@ export default function PinDetails() {
         <p
           className={`${
             !scrolled ? "opacity-100" : "opacity-0"
-          } text-lg text-gray-800 font-medium duration-500 transition-all ease-in-out`}
+          } hidden md:block text-lg text-gray-800 font-medium duration-500 transition-all ease-in-out`}
         >
           For you
         </p>
       </Link>
       <div className="flex p-3 md:p-5 lg:p-8 ">
-        <div className="flex w-4/6 max-h-screen shadow-md md:shadow-lg lg:shadow-xl overflow-hidden rounded-md md:rounded-xl lg:rounded-2xl bg-white mx-auto">
+        <div className="flex flex-col md:flex-row w-full md:w-4/6 max-h-screen shadow-md md:shadow-lg lg:shadow-xl overflow-hidden rounded-md md:rounded-xl lg:rounded-2xl bg-white mx-auto">
           {/* pin main image */}
           <div className="h-full flex-1 relative">
             {visiblePin && (
-              <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/85 backdrop-blur-sm rounded-md md:rounded-lg lg:rounded-xl overflow-hidden transition-all duration-500 ease-in-out z-[20] flex justify-start items-start">
+              <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/85 backdrop-blur-sm rounded-md md:rounded-lg lg:rounded-xl md:overflow-hidden transition-all duration-500 ease-in-out z-[20] flex justify-start items-start">
                 <div className="p-3">
                   <p className="text-gray-200">
                     Got it! We won't show you this Pin in the future.
@@ -368,7 +368,7 @@ export default function PinDetails() {
                   <FaRegHeart size={25} />
                 </div>
               </div>
-              <div className="flex items-center gap-2 mt-2">
+              <div className="flex flex-col md:flex-row items-center gap-2 mt-2">
                 <User
                   userId={user._id}
                   imgSrc={user.picture}

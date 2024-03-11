@@ -37,7 +37,8 @@ export default function Create() {
       type === "image/jpeg" ||
       type === "image/jpg" ||
       type === "image/gif" ||
-      type === "image/svg"
+      type === "image/svg" ||
+      type === "image/webp"
     ) {
       setimgTypeError(false);
       setImgLoading(true);
