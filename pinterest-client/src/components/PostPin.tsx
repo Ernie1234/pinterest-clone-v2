@@ -121,7 +121,7 @@ function PostPin({
             />
           )}
 
-          {user ? (
+          {user?.email_verified ? (
             postHovered && (
               <div
                 className="absolute top-0 w-full h-full flex flex-col justify-between p-2 pb-2 z-30"
